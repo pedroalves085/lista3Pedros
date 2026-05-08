@@ -13,7 +13,9 @@ int main(){
     bool a = sistem.insert(p2);
     bool b = sistem.insert(p3);
 
-    bool d = sistem.removePlayer(104);
+    // bool d = sistem.removePlayer(104);
+
+    sistem.sortByScoreMerge();
 
     sistem.printWaitingPlayers();
 }

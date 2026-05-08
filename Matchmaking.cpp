@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "Matchmaking.hpp"
+#include "AuxiliarFunctions.hpp"
 #include <iostream>
 
 using namespace std;
@@ -38,22 +39,30 @@ bool Matchmaking :: removePlayer(int id){
     return true;
 }
 
-// void Matchmaking :: sortByScoreInsertion(){
-//     int i, j, current;
-//     for (i = 1; i < this->size; i++) {
-//         current = this->players[i].getScore();
-//         j = i - 1;
+void Matchmaking :: sortByScoreInsertion(){
+    int i, j;
+    Player current;
+    for (i = 1; i < this->size; i++) {
+        current = this->players[i];
+        j = i - 1;
         
-//         while (j >= 0 && this->players[j].getScore() > current) {   
-//             this->players[j+1] = this->players[j];
-//             j = j - 1;
-//         }
-//         this->players[j+1] = current;
-//     }
-// }
-// void Matchmaking :: sortByScoreMerge(){
+        while (j >= 0 && this->players[j].getScore() > current.getScore()) {   
+            this->players[j+1] = this->players[j];
+            j = j - 1;
+        }
+        this->players[j+1] = current;
+    }
+}
 
-// }
+void Matchmaking :: sortByScoreMerge(){
+
+    Player* sorted = merge_sort(this -> players, this -> size);
+    for(int i = 0; i < this -> size; i++)
+        this -> players[i] = sorted[i];
+
+    delete[] sorted;
+}
+
 
 Player* Matchmaking:: getWaitingPlayers(int* n){
 
