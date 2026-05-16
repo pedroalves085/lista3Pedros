@@ -38,7 +38,7 @@ bool Matchmaking :: removePlayer(int id){
         }
     }
 
-    return true;
+    return false;
 }
 
 void Matchmaking :: sortByScoreInsertion(){
