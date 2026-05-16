@@ -9,7 +9,9 @@ Matchmaking :: Matchmaking(){
     this -> size = 0;
 }
 
-Matchmaking :: ~Matchmaking(){}
+Matchmaking :: ~Matchmaking(){
+    delete[] this -> players;
+}
 
 bool Matchmaking :: insert(Player player){
 
@@ -46,10 +48,23 @@ void Matchmaking :: sortByScoreInsertion(){
         current = this->players[i];
         j = i - 1;
         
-        while (j >= 0 && this->players[j].getScore() > current.getScore()) {   
-            this->players[j+1] = this->players[j];
-            j = j - 1;
+        while (j >= 0 && this->players[j].getScore() >= current.getScore()) {
+
+            if (this->players[j].getScore() == current.getScore()) {
+
+                if(this->players[j].getTimestamp() > current.getTimestamp()) {
+                    this->players[j+1] = this->players[j];
+                    j--;
+                } else {
+                    break;
+                }
+
+            } else {
+                this->players[j+1] = this->players[j];
+                j--;
+            }
         }
+                   
         this->players[j+1] = current;
     }
 }
@@ -61,6 +76,36 @@ void Matchmaking :: sortByScoreMerge(){
         this -> players[i] = sorted[i];
 
     delete[] sorted;
+}
+
+Player* Matchmaking :: formGroup(int groupSize, int delta, int* n){
+    Player first;
+    Player last;
+    Player* group = new Player[groupSize];
+    bool valid = false;
+    int i;
+
+    for(i = 0; i < this->size - groupSize + 1; i++){
+        first = players[i];
+        last = players[i + groupSize - 1];
+        if ((last.getScore() - first.getScore()) <= delta){
+            valid = true;
+            break;
+        }
+    }
+
+    if (valid == false){
+        *n = 0;
+        return nullptr;
+    }
+
+    for(int j = 0; j < groupSize; j++){
+        group[j] = players[i];
+        removePlayer(players[i].getId());
+    }
+
+    *n = groupSize;
+    return group;
 }
 
 
