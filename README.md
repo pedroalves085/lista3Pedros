@@ -43,4 +43,4 @@ A divisão de arquivos foi pensada da seguinte forma:
 Todos esses arquivos, com exceção da main, estão divididos em um .hpp, com as assinaturas das funções e um .cpp, com a implementação. Além disso, existe um arquivo chamado "ComparacoesMedicoes.cpp" que possui o código usado para comparar os algoritmos de ordenação Merge Sort e Insertion Sort com base no número de players dentro do sistema. Caso haja necessidade de rodar essa comparação, basta seguir a instrução de compilação para "ComparacoesMedicoes.cpp" e depois a instrução de execução.
 
 ## Execução de testes
-Para executar os testes no arquivo main.cpp, basta que sejam seguidas as instruções de compilação e execução presentes neste readme, já que no próprio arquivo o código está estruturado de modo que não é preciso fazer nenhuma alteração, executando de uma vez só todos os casos de operações do sistema.
+Para executar os testes no arquivo main.cpp, basta que sejam seguidas as instruções de compilação e execução presentes neste README, já que no próprio arquivo o código está estruturado de modo que não é preciso fazer nenhuma alteração, executando de uma vez só todos os casos de operações do sistema.
